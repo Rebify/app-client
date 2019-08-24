@@ -40,4 +40,16 @@ export class AuthService {
   setAuthToken(jwt: string) {
     this.cookieService.set('authToken', jwt);
   }
+
+  getIsAuthenticated(): boolean {
+    return this.isAuthenticated;
+  }
+
+  getAuthToken(): string {
+    return this.cookieService.get('authToken');
+  }
+
+  getHasAuthToken(): boolean {
+    return !!this.getAuthToken();
+  }
 }
