@@ -1,0 +1,9 @@
+<div *ngIf="menus.length">
+  <h2>My Menus</h2>
+  <ul class="">
+    <li *ngFor="let menu of menus">{{ menu.name }}</li>
+  </ul>
+</div>
+<div *ngIf="!menus.length">
+  <app-menu-form></app-menu-form>
+</div>

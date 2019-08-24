@@ -9,9 +9,23 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthFormComponent } from './components/auth-form/auth-form.component';
 import { PanelComponent } from './components/panel/panel.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { PersonalComponent } from './components/personal/personal.component';
+import { TableComponent } from './components/table/table.component';
+import { MenuFormComponent } from './components/menu-form/menu-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AuthFormComponent, PanelComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AuthFormComponent,
+    PanelComponent,
+    MenuComponent,
+    PaymentsComponent,
+    PersonalComponent,
+    TableComponent,
+    MenuFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
