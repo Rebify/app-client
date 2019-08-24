@@ -10,31 +10,46 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit {
+  isLoginMode: boolean;
   authForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
   ) {
+    this.isLoginMode = true;
     this.authForm = this.formBuilder.group({
       email: '',
       password: ''
     });
   }
 
-  onSubmit(formValue: AuthI): void {
+  ngOnInit() {}
+
+  onLogin(formValue: AuthI) {
+    const { email, password } = formValue;
+
     this.authService
-      .signUp(formValue.email, formValue.password)
-      .subscribe(() => {
-        this.authService
-          .login(formValue.email, formValue.password)
-          .subscribe((data: LoginResponseI) => {
-            this.authService.setIsAuthenticated();
-            this.authService.setAuthToken(data.token);
-            this.router.navigate(['/panel']);
-          });
+      .login(email, password)
+      .subscribe((data: LoginResponseI) => {
+        this.authService.setIsAuthenticated();
+        this.authService.setAuthToken(data.token);
+        this.router.navigate(['/panel']);
       });
   }
 
-  ngOnInit() {}
+  onSubmit(formValue: AuthI): void {
+    const { email, password } = formValue;
+
+    this.authService
+      .signUp(email, password)
+      .subscribe(() => {
+        this.onLogin(formValue);
+      });
+  }
+
+  changeAuthMode() {
+    this.isLoginMode = !this.isLoginMode;
+  }
 }
