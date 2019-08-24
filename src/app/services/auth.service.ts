@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {CookieService} from 'ngx-cookie-service';
-
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthOptionsI } from '../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +51,16 @@ export class AuthService {
 
   getHasAuthToken(): boolean {
     return !!this.getAuthToken();
+  }
+
+  getAuthHeaders(): AuthOptionsI {
+    const token: string = this.getAuthToken();
+    const options = {
+      headers: {
+        Authentication: token,
+      }
+    };
+
+    return options;
   }
 }

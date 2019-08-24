@@ -30,5 +30,5 @@
 
     <button type="submit">{{ isLoginMode ? 'Log in' : 'Sign up' }}</button>
   </form>
-  <button type="button" (click)="changeAuthMode()">Don’t have an account? Sign up</button>
+  <button type="button" (click)="changeAuthMode()">{{ !isLoginMode ? 'Do you have an account? Log in' : 'Don’t have an account? Sign up' }}</button>
 </div>

@@ -7,3 +7,9 @@ export interface LoginResponseI {
     success: boolean;
     token: string;
 }
+
+export interface AuthOptionsI {
+    headers: {
+        Authentication: string,
+    };
+}
