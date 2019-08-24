@@ -57,7 +57,7 @@ export class AuthService {
     const token: string = this.getAuthToken();
     const options = {
       headers: {
-        Authentication: token,
+        Authorization: token,
       }
     };
 

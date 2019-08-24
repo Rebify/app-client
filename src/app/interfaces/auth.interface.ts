@@ -10,6 +10,6 @@ export interface LoginResponseI {
 
 export interface AuthOptionsI {
     headers: {
-        Authentication: string,
+        Authorization: string,
     };
 }

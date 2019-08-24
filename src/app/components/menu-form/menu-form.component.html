@@ -1,0 +1,24 @@
+<div class="container">
+  <form
+    [formGroup]="menuForm"
+    name="form"
+    class="box"
+    (ngSubmit)="onSubmit(menuForm.value)"
+  >
+    <h2>Create Menu</h2>
+    <label for="name">
+      <h5>Name</h5>
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        autocomplete="off"
+        formControlName="name"
+      />
+    </label>
+   <!-- TODO: create dishForm that pushes ingredients to an ARRAY  -->
+    <button type="submit">Create menu</button>
+    <!-- TODO: List of ingredients ng for -->
+
+  </form>
+</div>
