@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -12,6 +13,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private cookieService: CookieService
   ) {
     this.baseURL = 'http://localhost:3000';
     this.serviceURL = 'auth';
@@ -33,5 +35,9 @@ export class AuthService {
 
   setIsAuthenticated() {
     this.isAuthenticated = true;
+  }
+
+  setAuthToken(jwt: string) {
+    this.cookieService.set('authToken', jwt);
   }
 }

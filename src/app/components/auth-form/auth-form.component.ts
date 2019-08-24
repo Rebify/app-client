@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthI } from '../../interfaces/auth.interface';
+import { AuthI, LoginResponseI } from '../../interfaces/auth.interface';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -26,7 +26,10 @@ export class AuthFormComponent implements OnInit {
       .subscribe(() => {
         this.authService
           .login(formValue.email, formValue.password)
-          .subscribe(() => this.authService.setIsAuthenticated());
+          .subscribe((data: LoginResponseI) => {
+            this.authService.setIsAuthenticated();
+            this.authService.setAuthToken(data.token);
+          });
       });
   }
 
