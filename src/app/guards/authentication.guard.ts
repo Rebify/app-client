@@ -11,15 +11,12 @@ import { AuthService } from '../services/auth.service';
 export class AuthenticationGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.getHasAuthToken()) {
       return true;
-    } else {
-      this.router.navigate(['/']);
-      return false;
     }
+
+    this.router.navigate(['/']);
+    return false;
   }
 }

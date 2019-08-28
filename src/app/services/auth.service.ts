@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   setAuthToken(jwt: string) {
-    this.cookieService.set('authToken', jwt);
+    this.cookieService.set('rebify_token', jwt);
   }
 
   getIsAuthenticated(): boolean {
@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   getAuthToken(): string {
-    return this.cookieService.get('authToken');
+    return this.cookieService.get('rebify_token');
   }
 
   getHasAuthToken(): boolean {
@@ -58,7 +58,8 @@ export class AuthService {
     const options = {
       headers: {
         Authorization: token,
-      }
+      },
+      withCredentials: true
     };
 
     return options;

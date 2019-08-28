@@ -9,3 +9,7 @@ export interface MenuI {
     name: string;
     dishes?: DishI[];
 }
+
+export interface MenuListResponseI {
+    menus: MenuI[];
+}

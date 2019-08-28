@@ -33,7 +33,6 @@ export class AuthFormComponent implements OnInit {
     this.authService
       .login(email, password)
       .subscribe((data: LoginResponseI) => {
-        this.authService.setIsAuthenticated();
         this.authService.setAuthToken(data.token);
         this.router.navigate(['/panel']);
       });

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MenuI } from '../interfaces/menu.interface';
 import { HttpClient } from '@angular/common/http';
+
+import { AuthService } from './auth.service';
+import { MenuI } from '../interfaces/menu.interface';
 
 const mockMenuList = [{
   name: 'menu a',
@@ -20,15 +22,19 @@ export class MenuService {
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService,
   ) {
     this.baseURL = 'http://localhost:3000';
     this.serviceURL = 'menu';
     this.menuList = mockMenuList;
-   }
-
-  getMenuList(): MenuI[] {
-    return this.menuList;
   }
+
+  getMenuList() {
+    const authHeaders = this.authService.getAuthHeaders();
+
+    return this.http.get(`${this.baseURL}/${this.serviceURL}`, authHeaders);
+  }
+
   postMenu(name: string, price: number, ingredients: string[], section: string) {
     const url = `${this.baseURL}/${this.serviceURL}/menu`;
     const body = { name, price, ingredients, section };
